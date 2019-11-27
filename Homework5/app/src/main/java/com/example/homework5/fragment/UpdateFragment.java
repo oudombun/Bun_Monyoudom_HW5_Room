@@ -191,7 +191,7 @@ public class UpdateFragment extends DialogFragment  implements EasyPermissions.P
 
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     icon.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                    String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), icon, "Title", null);
+                    String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), icon, "Titles1", null);
                     Uri uriDefualt= Uri.parse(path);
 
                     onUpdateDiaologListener.updateData(title,category,page,price,uriDefualt);
@@ -202,7 +202,7 @@ public class UpdateFragment extends DialogFragment  implements EasyPermissions.P
 
                         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+                        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title1ss", null);
                         Uri uriChoose= Uri.parse(path);
                         onUpdateDiaologListener.updateData(title,category,page,price,uriChoose);
                     } catch (FileNotFoundException e) {

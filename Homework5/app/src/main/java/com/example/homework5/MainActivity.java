@@ -2,6 +2,8 @@ package com.example.homework5;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.room.Room;
@@ -17,9 +19,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AddFragment.OnAdd
     AddFragment addFragment;
     UpdateFragment updateFragment;
     BookAdapter adapter;
-    ArrayList<Book> list;
+    List<Book> list;
     List<MyBook> myBookList=null;
     RecyclerView recyclerView;
     Integer adapterPosition;
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements AddFragment.OnAdd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         db = Room.databaseBuilder(
                 getApplicationContext(),
@@ -141,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements AddFragment.OnAdd
             for(int i=0;i<icon.length;i++){
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 icon[i].compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                String path = MediaStore.Images.Media.insertImage(getContentResolver(), icon[i], "Title", null);
+                String path = MediaStore.Images.Media.insertImage(getContentResolver(), icon[i], "Titlew", null);
                 uriDefualt= Uri.parse(path);
                 db.daoAPI().insertBook(new MyBook("title"+(i+1),"Sale Book",50,3.5,uriDefualt.toString()));
             }
@@ -239,4 +244,30 @@ public class MainActivity extends AppCompatActivity implements AddFragment.OnAdd
         });
         popup.show();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menusearch, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
+    }
+
 }

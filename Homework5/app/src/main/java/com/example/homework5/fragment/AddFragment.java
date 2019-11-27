@@ -182,7 +182,7 @@ public class AddFragment extends DialogFragment  implements EasyPermissions.Perm
 
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     icon.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                    String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), icon, "Title", null);
+                    String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), icon, "Titless", null);
                     Uri uriDefualt= Uri.parse(path);
 
                     onAddDiaologListener.sendData(title,category,page,price,uriDefualt);
@@ -193,7 +193,7 @@ public class AddFragment extends DialogFragment  implements EasyPermissions.Perm
 
                         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+                        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Titlesss", null);
                         Uri uriChoose= Uri.parse(path);
                         onAddDiaologListener.sendData(title,category,page,price,uriChoose);
                     }catch (Exception e){

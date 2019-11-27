@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,17 +22,54 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyHolder> {
-
-    private List<Book> mList=new ArrayList<>();
-    private OnBookChangeListener mListener;
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyHolder> implements Filterable {
     Context context;
+    private List<Book> mList=new ArrayList<>();
+    private List<Book> mListFull;
+    private OnBookChangeListener mListener;
 
-    public BookAdapter(Context context,List<Book> mList, OnBookChangeListener mListener) {
-        this.mList = mList;
-        this.mListener = mListener;
+    public BookAdapter(Context context, List<Book> mList, OnBookChangeListener mListener) {
         this.context = context;
+        this.mList = mList;
+        mListFull = new ArrayList<>(mList);
+        this.mListener = mListener;
     }
+
+
+    @Override
+    public Filter getFilter() {
+        return bookFilter;
+    }
+    private Filter bookFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Book> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(mListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Book item : mListFull) {
+                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            mList.clear();
+//            mList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public interface OnBookChangeListener{
         void onOption3dotClick(int position,View view);
