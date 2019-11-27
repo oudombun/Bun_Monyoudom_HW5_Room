@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey">
+    <TextView
+        android:id="@+id/up_frag_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/frijole"
+        android:padding="15dp"
+        android:text="Update Book"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
+    <ImageView
+        android:id="@+id/up_frag_myImg"
+        android:src="@drawable/placeholder_book"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_below="@id/up_frag_text"
+        android:scaleType="centerCrop"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/up_frag_myImg"
+        android:id="@+id/up_frag_btnChoose"
+        android:layout_below="@id/up_frag_text"
+        android:layout_margin="20dp"
+        app:backgroundTint="#83FF9800"
+        app:tint="@color/colorWhite"
+        android:text="choose"
+        android:src="@drawable/ic_image"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/up_frag_box"
+        android:layout_below="@id/up_frag_myImg">
+        <EditText
+        android:background="@drawable/bg_input_box"
+        android:layout_width="match_parent"
+        android:id="@+id/up_frag_myTitle"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:hint="Book Title"
+        android:textColor="@android:color/black"
+        />
+        <Spinner
+            android:background="@drawable/bg_input_box"
+            android:id="@+id/up_frag_myCate"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:prompt="@string/prom"
+            android:spinnerMode="dropdown"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:background="@drawable/bg_input_box"
+                android:id="@+id/up_frag_myPage"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Book size"/>
+            <EditText
+                android:background="@drawable/bg_input_box"
+                android:id="@+id/up_frag_myPrice"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Book Price"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_below="@id/up_frag_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:id="@+id/up_frag_btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_below="@id/up_frag_box"
+            android:text="Cancel"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp"/>
+        <Button
+            android:id="@+id/up_frag_btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="update"
+            android:layout_below="@id/up_frag_box"
+            android:padding="10dp"/>
+    </LinearLayout>
+</RelativeLayout>

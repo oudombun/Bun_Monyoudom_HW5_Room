@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey">
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/frijole"
+        android:padding="15dp"
+        android:text="Insert Book"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
+    <ImageView
+        android:id="@+id/myImg"
+        android:src="@drawable/placeholder_book"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_below="@id/text"
+        android:scaleType="centerCrop"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/myImg"
+        android:id="@+id/btnChoose"
+        android:layout_below="@id/text"
+        android:layout_margin="20dp"
+        app:backgroundTint="#83FF9800"
+        app:tint="@color/colorWhite"
+        android:text="choose"
+        android:src="@drawable/ic_image"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/box"
+        android:layout_below="@id/myImg">
+        <EditText
+        android:background="@drawable/bg_input_box"
+        android:layout_width="match_parent"
+        android:id="@+id/myTitle"
+        android:textSize="15sp"
+        android:layout_height="wrap_content"
+        android:hint="Book Title"
+        android:textColor="@android:color/black"
+        />
+        <Spinner
+            android:background="@drawable/bg_input_box"
+            android:id="@+id/myCate"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:prompt="@string/prom"
+            android:spinnerMode="dropdown"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:background="@drawable/bg_input_box"
+                android:id="@+id/myPage"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Book size"/>
+            <EditText
+                android:background="@drawable/bg_input_box"
+                android:id="@+id/myPrice"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Book Price"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_below="@id/box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_below="@id/box"
+            android:text="Cancel"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp"/>
+        <Button
+            android:id="@+id/btnInsert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="insert"
+            android:layout_below="@id/box"
+            android:padding="10dp"/>
+    </LinearLayout>
+</RelativeLayout>
